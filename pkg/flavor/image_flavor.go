@@ -1,23 +1,28 @@
-package cmd
+package flavor
 
 import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"github.com/satori/go.uuid"
-	"lib-go-flavor/cmd/flavors"
-	"lib-go-flavor/cmd/images"
+	"lib-go-flavor/pkg/flavor/flavors"
+	"lib-go-flavor/pkg/flavor/images"
 )
 /**
  *
  * @author purvades
  */
 
-func GetImageFlavor(label string, encryptionRequired bool, keyURL string, initializationVector []byte, digest string) string {
+type imageFlavor struct {
+	Image images.Image	`json:"flavor"`
+}
+
+func GetImageFlavor(label string, encryptionRequired bool, keyURL string, initializationVector []byte, digest string) (string,error) {
     var meta flavors.Meta
     uuid1, err := uuid.NewV4()
     if err != nil {
 		fmt.Println("Unable to create uuid. ", err)
+		return "",nil
 	}
 	meta.ID = uuidToString(uuid1)
 
@@ -32,27 +37,29 @@ func GetImageFlavor(label string, encryptionRequired bool, keyURL string, initia
     encryption.InitializationVector = initializationVector
     encryption.Digest = digest
 
-    var imageFlavor images.Image
-	imageFlavor.Meta = meta
-	imageFlavor.Encryption = encryption
-    return serialize(imageFlavor)
+    var flavor imageFlavor
+	flavor.Image.Meta = meta
+	flavor.Image.Encryption = encryption
+    return serialize(flavor)
 }
 
-func serialize(imageFlavor images.Image) string {
-    bytes, err := json.Marshal(imageFlavor)
+func serialize(flavor imageFlavor) (string,error) {
+    bytes, err := json.Marshal(flavor)
     if err != nil {
-        fmt.Println("Can't serislize", imageFlavor)
+        fmt.Println("Can't serislize", err)
+        return "",err
     }
-    return string(bytes)
+    return string(bytes),nil
 }
 
-func deserialize(imageFlavorJson string) images.Image {
-    var imageFlavor images.Image
-    err := json.Unmarshal([]byte(imageFlavorJson), &imageFlavor)
+func deserialize(imageFlavorJson string) (imageFlavor,error) {
+    var flavor imageFlavor
+    err := json.Unmarshal([]byte(imageFlavorJson), &flavor)
     if err != nil {
-        fmt.Println("Can't deserislize", imageFlavorJson)
+        fmt.Println("Can't deserislize", err)
+		return flavor,err
     }
-   return imageFlavor
+   return flavor,nil
 }
 
 func uuidToString(u uuid.UUID) string {
