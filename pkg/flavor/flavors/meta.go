@@ -1,25 +1,22 @@
 package flavors
 
-import (
-)
-
 /**
  *
  * @author purvades
  */
 
-type Meta struct {  
-    Schema      Schema      `json:"schema"`
-    ID          string      `json:"id"`
-    Author      Author      `json:"author"`
-    Realm       string      `json:"realm"`
-    Description Description `json:"description"`
+type Meta struct {
+	Schema      *Schema      `json:"schema,omitempty"`
+	ID          string       `json:"id,omitempty"`
+	Author      *Author      `json:"author,omitempty"`
+	Realm       string       `json:"realm,omitempty"`
+	Description *Description `json:"description,omitempty"`
 }
 
-type Schema struct {  
-    URI         string      `json:"uri"`
+type Schema struct {
+	URI string `json:"uri,omitempty"`
 }
 
-type Author struct {  
-    Email       string      `json:"email"`
+type Author struct {
+	Email string `json:"email,omitempty"`
 }

@@ -6,17 +6,17 @@ package flavors
  */
 
 type Description struct {
-    FlavorPart      string      `json:"flavor_part"`
-    Source          string      `json:"source"`
-    Label           string      `json:"label"`
-    IPAddress       string      `json:"ip_address"`
-    BiosName        string      `json:"bios_name"`
-    BiosVersion     string      `json:"bios_version"`
-    OSName          string      `json:"os_name"`
-    OSVersion       string      `json:"os_version"`
-    VMMName         string      `json:"vmm_name"`
-    VMMVersion      string      `json:"vmm_version"`
-    TPMVersion      string      `json:"tpm_version"`
-    HardwareUUID    string      `json:"hardware_uuid"`
-    Comment         string      `json:"comment"`
+	FlavorPart   string `json:"flavor_part,omitempty"`
+	Source       string `json:"source,omitempty"`
+	Label        string `json:"label,omitempty"`
+	IPAddress    string `json:"ip_address,omitempty"`
+	BiosName     string `json:"bios_name,omitempty"`
+	BiosVersion  string `json:"bios_version,omitempty"`
+	OSName       string `json:"os_name,omitempty"`
+	OSVersion    string `json:"os_version,omitempty"`
+	VMMName      string `json:"vmm_name,omitempty"`
+	VMMVersion   string `json:"vmm_version,omitempty"`
+	TPMVersion   string `json:"tpm_version,omitempty"`
+	HardwareUUID string `json:"hardware_uuid,omitempty"`
+	Comment      string `json:"comment,omitempty"`
 }

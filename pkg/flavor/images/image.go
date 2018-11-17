@@ -1,7 +1,7 @@
 package images
 
-import (  
-    "lib-go-flavor/pkg/flavor/flavors"
+import (
+	"lib-go-flavor/pkg/flavor/flavors"
 )
 
 /**
@@ -9,7 +9,7 @@ import (
  * @author purvades
  */
 
-type Image struct {  
-    Meta          flavors.Meta  `json:"meta"`
-    Encryption    Encryption    `json:"encryption"`
+type Image struct {
+	Meta       *flavors.Meta `json:"meta,omitempty"`
+	Encryption *Encryption   `json:"encryption,omitempty"`
 }

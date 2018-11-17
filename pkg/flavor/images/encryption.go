@@ -6,9 +6,8 @@ package images
  */
 
 type Encryption struct {
-	EncryptionRequired     	bool		`json:"encryption_required"`
-	KeyURL          		string		`json:"key_url"`
-	InitializationVector   	[]byte		`json:"initialization_vector"`
-	Digest       			string		`json:"digest"`
+	EncryptionRequired   bool   `json:"encryption_required,omitempty"`
+	KeyURL               string `json:"key_url,omitempty"`
+	InitializationVector []byte `json:"initialization_vector,omitempty"`
+	Digest               string `json:"digest,omitempty"`
 }
-
