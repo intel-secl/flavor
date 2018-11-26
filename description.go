@@ -5,6 +5,7 @@ package flavor
  * @author purvades
  */
 
+// Description contains information about the host hardware identifiers
 type Description struct {
 	FlavorPart   string `json:"flavor_part,omitempty"`
 	Source       string `json:"source,omitempty"`
