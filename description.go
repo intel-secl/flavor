@@ -1,7 +1,7 @@
-package flavors
+package flavor
 
 /**
- * 
+ *
  * @author purvades
  */
 

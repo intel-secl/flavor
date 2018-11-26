@@ -1,7 +1,8 @@
 package main
 
 import (
-	"lib-go-flavor/pkg/flavor"
+	"encoding/json"
+	"intel/isecl/lib/flavor"
 	"log"
 	"os"
 	"strconv"
@@ -23,7 +24,11 @@ func main() {
 		if err != nil {
 			log.Printf(err.Error())
 		}
-		log.Printf(imageFlavor)
+		json, err := json.Marshal(imageFlavor)
+		if err != nil {
+			log.Fatal("Failed to serialize flavor:", err)
+		}
+		log.Printf(string(json))
 
 	default:
 		log.Printf("Invalid method name. \nExpected values: GetImageFlavor")
