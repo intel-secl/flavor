@@ -1,6 +1,7 @@
 package flavor
 
 import (
+	"encoding/json"
 	"fmt"
 	"testing"
 )
@@ -12,5 +13,7 @@ func TestImageFlavorCreation(t *testing.T) {
 	if err != nil {
 		fmt.Printf(err.Error())
 	}
-	fmt.Printf("Image Flavor:%s\n", flavor)
+	json, err := json.Marshal(flavor)
+
+	fmt.Printf("Image Flavor:%s\n", string(json))
 }
