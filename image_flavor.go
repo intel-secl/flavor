@@ -42,8 +42,8 @@ func GetImageFlavor(label string, encryptionRequired bool, keyURL string, initia
 	}
 
 	imageflavor := Image{
-		Meta:       &meta,
-		Encryption: &encryption,
+		Meta:       meta,
+		Encryption: encryption,
 	}
 
 	flavor := ImageFlavor{
