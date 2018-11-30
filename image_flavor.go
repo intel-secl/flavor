@@ -16,10 +16,9 @@ type ImageFlavor struct {
 	Image Image `json:"flavor"`
 }
 
-// GetImageFlavor constructs a new ImageFlavor with the specified label, encryption policy, KMS url, encryption IV, and digest of the encrypted payload
-func GetImageFlavor(label string, encryptionRequired bool, keyURL string, initializationVector []byte,
-	digest string) (*ImageFlavor, error) {
-	uuid1, err := uuid.NewV4()
+// GetImageFlavor constructs a new ImageFlavor with the specified label, encryption policy, KMS url, and digest of the encrypted payload
+func GetImageFlavor(label string, encryptionRequired bool, keyURL string, digest string) (*ImageFlavor, error) {
+	flavorID, err := uuid.NewV4()
 	if err != nil {
 		fmt.Println("Unable to create uuid. ", err)
 		return nil, nil
@@ -31,13 +30,12 @@ func GetImageFlavor(label string, encryptionRequired bool, keyURL string, initia
 	}
 
 	meta := Meta{
-		ID:          uuid1.String(),
+		ID:          flavorID.String(),
 		Description: &description,
 	}
 	encryption := Encryption{
 		EncryptionRequired:   encryptionRequired,
 		KeyURL:               keyURL,
-		InitializationVector: initializationVector,
 		Digest:               digest,
 	}
 
