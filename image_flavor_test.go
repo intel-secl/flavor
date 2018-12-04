@@ -15,5 +15,5 @@ func TestImageFlavorCreation(t *testing.T) {
 	}
 	json, err := json.Marshal(flavor)
 
-	log.Println("Image Flavor:%s\n", string(json))
+	log.Printf("Image Flavor:%s\n", string(json))
 }
