@@ -5,7 +5,7 @@ package flavor
  * @author purvades
  */
 
-// Meta defines metadata info about the flavor
+// Meta defines meta data of the flavor
 type Meta struct {
 	Schema      *Schema      `json:"schema,omitempty"`
 	ID          string       `json:"id,omitempty"`
@@ -14,12 +14,12 @@ type Meta struct {
 	Description *Description `json:"description,omitempty"`
 }
 
-// Schema contains the URI to the schema
+// Schema defines the URI of the schema
 type Schema struct {
 	URI string `json:"uri,omitempty"`
 }
 
-// Author contains the email address of the author
+// Author defines the email address of the author
 type Author struct {
 	Email string `json:"email,omitempty"`
 }

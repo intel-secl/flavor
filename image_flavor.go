@@ -11,12 +11,14 @@ import (
  * @author purvades
  */
 
-// ImageFlavor is a flavor structure that contains whitelist metadata for a VM image
+// ImageFlavor is a flavor for an image with the encryption requirement information
+// and key details of an encrypted image. 
 type ImageFlavor struct {
 	Image Image `json:"flavor"`
 }
 
-// GetImageFlavor constructs a new ImageFlavor with the specified label, encryption policy, KMS url, and digest of the encrypted payload
+// GetImageFlavor is used to create a new image flavor with the specified label, encryption policy,
+// key url, and digest of the encrypted image
 func GetImageFlavor(label string, encryptionRequired bool, keyURL string, digest string) (*ImageFlavor, error) {
 	flavorID, err := uuid.NewV4()
 	if err != nil {
