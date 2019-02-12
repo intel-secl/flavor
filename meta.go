@@ -8,10 +8,10 @@ package flavor
 // Meta defines meta data of the flavor
 type Meta struct {
 	Schema      *Schema      `json:"schema,omitempty"`
-	ID          string       `json:"id,omitempty"`
+	ID          string       `json:"id"`
 	Author      *Author      `json:"author,omitempty"`
 	Realm       string       `json:"realm,omitempty"`
-	Description *Description `json:"description,omitempty"`
+	Description *Description `json:"description"`
 }
 
 // Schema defines the URI of the schema

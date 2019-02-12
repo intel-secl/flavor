@@ -20,6 +20,8 @@ type ImageFlavor struct {
 // GetImageFlavor is used to create a new image flavor with the specified label, encryption policy,
 // key url, and digest of the encrypted image
 func GetImageFlavor(label string, encryptionRequired bool, keyURL string, digest string) (*ImageFlavor, error) {
+	
+	var encryption *Encryption
 	flavorID, err := uuid.NewV4()
 	if err != nil {
 		fmt.Println("Unable to create uuid. ", err)
@@ -35,15 +37,18 @@ func GetImageFlavor(label string, encryptionRequired bool, keyURL string, digest
 		ID:          flavorID.String(),
 		Description: &description,
 	}
-	encryption := Encryption{
-		EncryptionRequired:   encryptionRequired,
-		KeyURL:               keyURL,
-		Digest:               digest,
+	
+	if encryptionRequired {
+		encryption = &Encryption{
+			KeyURL: keyURL,
+			Digest: digest,
+		}
 	}
 
 	imageflavor := Image{
 		Meta:       meta,
-		Encryption: encryption,
+		EncryptionRequired: encryptionRequired,
+		Encryption: encryption,	
 	}
 
 	flavor := ImageFlavor{

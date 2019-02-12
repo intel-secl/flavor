@@ -8,6 +8,7 @@ package flavor
 // Image struct defines the metadata of the image and
 // encryption details such as key URL, digest etc.
 type Image struct {
-	Meta       Meta       `json:"meta,omitempty"`
-	Encryption Encryption `json:"encryption,omitempty"`
+	Meta               Meta        `json:"meta"`
+	EncryptionRequired bool        `json:"encryption_required"`
+	Encryption         *Encryption `json:"encryption,omitempty"`
 }
