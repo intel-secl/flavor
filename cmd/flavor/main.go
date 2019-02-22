@@ -13,7 +13,7 @@ import (
 func main() {
 
 	if len(os.Args[0:]) < 2 {
-		log.Fatal("Usage :  ./lib-flavor <methodname> <parameters>")
+		log.Fatal("Usage :  ./flavor <methodname> <parameters>")
 	}
 	var methodName = os.Args[1]
 
@@ -21,7 +21,7 @@ func main() {
 
 	case "GetImageFlavor":
 		if len(os.Args[1:]) < 5 {
-			log.Fatal("Usage :  ./lib-flavor GetImageFlavor label encryptionRequired keyURL digest")
+			log.Fatal("Usage :  ./flavor GetImageFlavor label encryptionRequired keyURL digest")
 		}
 
 		encryptionRequired, err := strconv.ParseBool(os.Args[3])
@@ -48,8 +48,52 @@ func main() {
 		}
 		log.Println(string(json))
 
+	case "GetContainerImageFlavor":
+		if len(os.Args[1:]) < 6 {
+                        createContainerImageFlavorUsage()
+		}
+
+		encryptionRequired, err := strconv.ParseBool(os.Args[3])
+		if err != nil {
+			log.Println("Invalid input : encryptionRequired must be a boolean value. ")
+			createContainerImageFlavorUsage()
+		}
+
+		integrityEnforced, err := strconv.ParseBool(os.Args[5])
+		if err != nil {
+			log.Println("Invalid input : integrityEnforced must be a boolean value. ")
+			createContainerImageFlavorUsage()
+		}
+
+		if encryptionRequired {
+			_, err = url.ParseRequestURI(os.Args[4])
+			if err != nil {
+				log.Println("Invalid input : keyURL ")
+				createContainerImageFlavorUsage()
+			}
+		}
+
+		if integrityEnforced {
+			_, err = url.ParseRequestURI(os.Args[6])
+			if err != nil {
+				log.Fatal("Invalid input : notaryURL ")
+				createContainerImageFlavorUsage()
+			}
+		}
+
+		log.Println("Container Image flavor creation method called")
+		containerImageFlavor, err := flavor.GetContainerImageFlavor(os.Args[2], encryptionRequired, os.Args[4], integrityEnforced, os.Args[6])
+		if err != nil {
+			log.Println(err)
+		}
+		json, err := json.Marshal(containerImageFlavor)
+		if err != nil {
+			log.Fatal("Failed to serialize flavor:", err)
+		}
+		log.Println(string(json))
+
 	default:
-		log.Println("Invalid method name. \nExpected values: GetImageFlavor")
+		log.Println("Invalid method name. \n Expected values: GetImageFlavor or GetContainerImageFlavor")
 	}
 }
 
@@ -57,4 +101,8 @@ func main() {
 func isValidDigest(value string) bool {
 	r := regexp.MustCompile("^[a-fA-F0-9]{64}$")
 	return r.MatchString(value)
+}
+
+func createContainerImageFlavorUsage() {
+	log.Fatal("Usage :  ./flavor GetContainerImageFlavor label encryptionRequired keyURL integrityEnforced notaryURL")
 }

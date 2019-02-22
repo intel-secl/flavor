@@ -11,4 +11,6 @@ type Image struct {
 	Meta               Meta        `json:"meta"`
 	EncryptionRequired bool        `json:"encryption_required"`
 	Encryption         *Encryption `json:"encryption,omitempty"`
+	IntegrityEnforced  bool        `json:"integrity_enforced"`
+	Integrity          *Integrity  `json:"integrity,omitempty"`
 }
