@@ -3,11 +3,13 @@ package main
 import (
 	"encoding/json"
 	"intel/isecl/lib/flavor"
+	"intel/isecl/lib/common/validation"
 	"log"
 	"net/url"
 	"os"
 	"regexp"
 	"strconv"
+	"fmt"
 )
 
 func main() {
@@ -37,6 +39,12 @@ func main() {
 			log.Fatal("Invalid input : digest must be a hexadecimal value and 64 characters in length.")
 		}
 
+		inputArr := []string{os.Args[2]}
+		if validateLabelErr := validation.ValidateStrings(inputArr); validateLabelErr != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+
 		log.Println("Image flavor creation method called")
 		imageFlavor, err := flavor.GetImageFlavor(os.Args[2], encryptionRequired, os.Args[4], os.Args[5])
 		if err != nil {
@@ -50,7 +58,7 @@ func main() {
 
 	case "GetContainerImageFlavor":
 		if len(os.Args[1:]) < 6 {
-                        createContainerImageFlavorUsage()
+            createContainerImageFlavorUsage()
 		}
 
 		encryptionRequired, err := strconv.ParseBool(os.Args[3])
