@@ -16,5 +16,9 @@ github.com/stretchr/testify v1.3.0 h1:TivCn/peBQ7UY8ooIcPgZFpTNSz0Q2U6UrFlUfqbe0
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 gitlab.devtools.intel.com/sst/isecl/lib/common v0.0.0-20190319145058-2ffac27584ad h1:Mo/ZItypfekepE/GJVmd2c8M25fv6LUro0xR2cYNAks=
 gitlab.devtools.intel.com/sst/isecl/lib/common v0.0.0-20190319145058-2ffac27584ad/go.mod h1:GS2vl+086n/fR3NszTZqou4eRVc7xTK0PqpYecqBBT4=
+gitlab.devtools.intel.com/sst/isecl/lib/common v0.0.0-20190322055814-8a1879ffb98c h1:UlTG1ADQs2dTNG4y7/7C8fE8gQKKhkhGhaCVqVxS57Q=
+gitlab.devtools.intel.com/sst/isecl/lib/common v0.0.0-20190322055814-8a1879ffb98c/go.mod h1:YylLONUT39eESWy4jB37E49b9EOYiTf4D3P/JcfwEiA=
+gitlab.devtools.intel.com/sst/isecl/lib/common v0.0.0-20190322150646-918d55604b78 h1:AQcMiAJllqv9PshWUdHLo95ofEJuwSFvtQ8CtlM7hoo=
+gitlab.devtools.intel.com/sst/isecl/lib/common v0.0.0-20190322150646-918d55604b78/go.mod h1:YylLONUT39eESWy4jB37E49b9EOYiTf4D3P/JcfwEiA=
 golang.org/x/crypto v0.0.0-20180904163835-0709b304e793/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
 golang.org/x/sys v0.0.0-20180905080454-ebe1bf3edb33/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=

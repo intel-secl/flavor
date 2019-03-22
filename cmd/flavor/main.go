@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/url"
 	"os"
-	"regexp"
 	"strconv"
 	"fmt"
 )
@@ -26,23 +25,28 @@ func main() {
 			log.Fatal("Usage :  ./flavor GetImageFlavor label encryptionRequired keyURL digest")
 		}
 
+		uriValue, _ := url.Parse(os.Args[4])
+		protocol := make(map[string]byte)
+		protocol["https"] = 0
+		if validateURLErr := validation.ValidateURL(os.Args[4], protocol, uriValue.RequestURI()); validateURLErr != nil {
+			fmt.Println(validateURLErr.Error())
+			os.Exit(1)
+		}
+
+		if validDigestErr := validation.ValidateBase64String(os.Args[5]); validDigestErr != nil {
+			fmt.Println(validDigestErr.Error())
+			os.Exit(1)
+		}
+
+		inputArr := []string{os.Args[2], os.Args[3]}
+		if validateLabelErr := validation.ValidateStrings(inputArr); validateLabelErr != nil {
+			fmt.Println(validateLabelErr.Error())
+			os.Exit(1)
+		}
+
 		encryptionRequired, err := strconv.ParseBool(os.Args[3])
 		if err != nil {
 			log.Fatal("Invalid input : encryptionRequired must be a boolean value. ")
-		}
-		_, err = url.ParseRequestURI(os.Args[4])
-		if err != nil {
-			log.Fatal("Invalid input : keyURL ")
-		}
-
-		if !isValidDigest(os.Args[5]) {
-			log.Fatal("Invalid input : digest must be a hexadecimal value and 64 characters in length.")
-		}
-
-		inputArr := []string{os.Args[2]}
-		if validateLabelErr := validation.ValidateStrings(inputArr); validateLabelErr != nil {
-			fmt.Println(err.Error())
-			os.Exit(1)
 		}
 
 		log.Println("Image flavor creation method called")
@@ -103,12 +107,6 @@ func main() {
 	default:
 		log.Println("Invalid method name. \n Expected values: GetImageFlavor or GetContainerImageFlavor")
 	}
-}
-
-//isValidDigest method checks if the digest value is hexadecimal and 64 characters in length
-func isValidDigest(value string) bool {
-	r := regexp.MustCompile("^[a-fA-F0-9]{64}$")
-	return r.MatchString(value)
 }
 
 func createContainerImageFlavorUsage() {

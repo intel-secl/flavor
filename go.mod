@@ -6,4 +6,4 @@ require (
 	intel/isecl/lib/common v0.0.0
 )
 
-replace intel/isecl/lib/common => gitlab.devtools.intel.com/sst/isecl/lib/common v0.0.0-20190319145058-2ffac27584ad
+replace intel/isecl/lib/common => gitlab.devtools.intel.com/sst/isecl/lib/common v0.0.0-20190322150646-918d55604b78
