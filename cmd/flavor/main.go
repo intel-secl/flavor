@@ -12,6 +12,12 @@ import (
 
 func main() {
 
+	inputValArr := os.Args[0:]
+	if valErr := validation.ValidateStrings(inputValArr); valErr != nil {
+		fmt.Println("Invalid string format")
+		os.Exit(1)
+	}
+
 	if len(os.Args[0:]) < 2 {
 		fmt.Printf("Usage : %s <methodname> <parameters>\n", os.Args[0])
 		os.Exit(1)
