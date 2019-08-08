@@ -1,6 +1,5 @@
 package util
 
-//import "crypto"
 import (
 	"intel/isecl/lib/flavor"
 
@@ -18,12 +17,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type SignedImageFlavor struct {
-	ImageFlavor flavor.Image `json:"flavor"`
-	Signature   string       `json:"signature"`
-}
-
-//GetSignedFlavor is used to get SHA 384 signature for a provided input
+//GetSignedFlavor is used to sign flavor
 func GetSignedFlavor(flavorString string, rsaPrivateKeyLocation string) (string, error) {
 	var privateKey *rsa.PrivateKey
 	var flavorInterface flavor.ImageFlavor
@@ -57,14 +51,14 @@ func GetSignedFlavor(flavorString string, rsaPrivateKeyLocation string) (string,
 
 	json.Unmarshal([]byte(flavorString), &flavorInterface)
 
-	signedFlavor := &SignedImageFlavor{
+	signedFlavor := &flavor.SignedImageFlavor{
 		ImageFlavor: flavorInterface.Image,
 		Signature:   signatureString,
 	}
 
 	signedFlavorJSON, err := json.Marshal(signedFlavor)
 	if err != nil {
-		return "", errors.New("Error while marshalling signed container image flavor: " + err.Error())
+		return "", errors.New("Error while marshalling signed image flavor: " + err.Error())
 	}
 
 	return string(signedFlavorJSON), nil
