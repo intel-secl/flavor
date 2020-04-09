@@ -22,11 +22,11 @@ cmd - contains the command line interface utility to use the library
 
 ## Install required shell commands
 
-### Install `go` version >= `go1.12.12` & <= `go1.12.17`
-The `Flavor` requires Go version 1.12.12 that has support for `go modules`. The build was validated with the latest version go1.12.17 of `go`. It is recommended that you use go1.12.17 version of `go`. You can use the following to install `go`.
+### Install `go` version >= `go1.12.1` & <= `go1.14.1`
+The `Flavor` requires Go version 1.12.1 that has support for `go modules`. The build was validated with the latest version go1.14.1 of `go`. It is recommended that you use go1.14.1 version of `go`. You can use the following to install `go`.
 ```shell
-wget https://dl.google.com/go/go1.12.17.linux-amd64.tar.gz
-tar -xzf go1.12.17.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz
+tar -xzf go1.14.1.linux-amd64.tar.gz
 sudo mv go /usr/local
 export GOROOT=/usr/local/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH

@@ -5,7 +5,7 @@
 package util
 
 import (
-	"intel/isecl/lib/flavor"
+	"intel/isecl/lib/flavor/v2"
 
 	"crypto"
 	"crypto/rand"
