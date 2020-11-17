@@ -1,6 +1,6 @@
 # Flavor Library
 
-The Flavor library is responsible for retrieving the hardware/software measurements of the host in a pre-defined format. 
+The Flavor library is responsible for retrieving the hardware/software measurements of the host in a pre-defined format.
 When integrated with the Host Verification service, Flavor would be equivalent to what is known today as the Whitelist.
 
 cmd - contains the command line interface utility to use the library
@@ -16,17 +16,17 @@ cmd - contains the command line interface utility to use the library
 
 ## Software requirements
 - git
-- `go` version >= `go1.12.12` & <= `go1.12.17`
+- `go` version >= `go1.13` & <= `go1.14.4`
 
 # Step By Step Build Instructions
 
 ## Install required shell commands
 
-### Install `go` version >= `go1.12.1` & <= `go1.14.1`
-The `Flavor` requires Go version 1.12.1 that has support for `go modules`. The build was validated with the latest version go1.14.1 of `go`. It is recommended that you use go1.14.1 version of `go`. You can use the following to install `go`.
+### Install `go` version >= `go1.13` & <= `go1.14.4`
+The `Flavor` requires Go version 1.13 that has support for `go modules`. The build was validated with the latest version go1.14.4 of `go`. It is recommended that you use go1.14.1 version of `go`. You can use the following to install `go`.
 ```shell
-wget https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz
-tar -xzf go1.14.1.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
+tar -xzf go1.14.4.linux-amd64.tar.gz
 sudo mv go /usr/local
 export GOROOT=/usr/local/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
