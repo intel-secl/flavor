@@ -49,11 +49,20 @@ func GetSignedFlavor(flavorString string, rsaPrivateKeyLocation string) (string,
 		return "", err
 	}
 	hashEntity := sha512.New384()
-	hashEntity.Write([]byte(flavorString))
+	_, err = hashEntity.Write([]byte(flavorString))
+	if err != nil {
+		return "", errors.New("Error while writing flavor hash: " + err.Error())
+	}
 	signature, err := rsa.SignPKCS1v15(rand.Reader, privateKey, crypto.SHA384, hashEntity.Sum(nil))
+	if err != nil {
+		return "", errors.New("Error while signing flavor: " + err.Error())
+	}
 	signatureString := base64.StdEncoding.EncodeToString(signature)
 
-	json.Unmarshal([]byte(flavorString), &flavorInterface)
+	err = json.Unmarshal([]byte(flavorString), &flavorInterface)
+	if err != nil {
+		return "", errors.New("Error while unmarshalling signed image flavor: " + err.Error())
+	}
 
 	signedFlavor := &flavor.SignedImageFlavor{
 		ImageFlavor: flavorInterface.Image,
