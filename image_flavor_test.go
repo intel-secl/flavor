@@ -6,8 +6,8 @@ package flavor
 
 import (
 	"encoding/json"
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestImageFlavorCreationWithEncryption(t *testing.T) {
