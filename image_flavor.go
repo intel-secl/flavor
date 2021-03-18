@@ -7,7 +7,7 @@ package flavor
 import (
 	"fmt"
 
-	uuid "github.com/satori/go.uuid"
+	"github.com/google/uuid"
 )
 
 /**
@@ -26,7 +26,7 @@ type ImageFlavor struct {
 func GetImageFlavor(label string, encryptionRequired bool, keyURL string, digest string) (*ImageFlavor, error) {
 
 	var encryption *Encryption
-	flavorID, err := uuid.NewV4()
+	flavorID, err := uuid.NewRandom()
 	if err != nil {
 		fmt.Println("Unable to create uuid. ", err)
 		return nil, nil
@@ -66,7 +66,7 @@ func GetImageFlavor(label string, encryptionRequired bool, keyURL string, digest
 func GetContainerImageFlavor(label string, encryptionRequired bool, keyURL string, integrityEnforced bool, notaryURL string) (*ImageFlavor, error) {
 	var encryption *Encryption
 	var integrity *Integrity
-	flavorID, err := uuid.NewV4()
+	flavorID, err := uuid.NewRandom()
 	if err != nil {
 		fmt.Println("Unable to create uuid. ", err)
 		return nil, nil
