@@ -7,8 +7,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"intel/isecl/lib/common/v3/validation"
-	"intel/isecl/lib/flavor/v3"
+	"intel/isecl/lib/common/v4/validation"
+	"intel/isecl/lib/flavor/v4"
 	"net/url"
 	"os"
 	"strconv"
