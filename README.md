@@ -16,14 +16,15 @@ cmd - contains the command line interface utility to use the library
 
 ## Software requirements
 - git
-- `go` version >= `go1.13` & <= `go1.14.4`
+- `go` version `1.14.4`
 
 # Step By Step Build Instructions
 
 ## Install required shell commands
 
-### Install `go` version >= `go1.13` & <= `go1.14.4`
-The `Flavor` requires Go version 1.13 that has support for `go modules`. The build was validated with the latest version go1.14.4 of `go`. It is recommended that you use go1.14.1 version of `go`. You can use the following to install `go`.
+### Install `go` version `go1.14.4`
+The `flavor-library` requires Go version 1.14.4 that has support for `go modules`. The build was validated with the latest version go1.14.4 of `go`. It is recommended that you use go1.14.4 version of `go`. You can use the following to install `go`.
+
 ```shell
 wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
 tar -xzf go1.14.4.linux-amd64.tar.gz
@@ -40,12 +41,10 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 ```shell
 git clone https://github.com/intel-secl/flavor.git
 cd flavor
-```
-```shell
 go build ./...
 ```
 
-# Third Party Dependencies
+## Third Party Dependencies
 
 ## Flavor library
 
