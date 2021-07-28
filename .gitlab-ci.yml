@@ -1,4 +1,4 @@
-image: golang:1.14
+image: golang:1.16
 
 before_script:
   - echo "Acquire::http::Proxy \"${HTTP_PROXY}\";" >> /etc/apt/apt.conf
@@ -24,6 +24,7 @@ test:
   tags:
     - go
   script:
+    - GOOS=linux GOSUMDB=off GOPROXY=direct go mod tidy
     - GOSUMDB=off GOPROXY=direct go test -cover
 
 compile:
@@ -31,4 +32,5 @@ compile:
   tags:
     - go
   script:
+    - GOOS=linux GOSUMDB=off GOPROXY=direct go mod tidy
     - GOSUMDB=off GOPROXY=direct go build ./...

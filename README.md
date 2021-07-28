@@ -41,6 +41,7 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 ```shell
 git clone https://github.com/intel-secl/flavor.git
 cd flavor
+GOOS=linux GOSUMDB=off GOPROXY=direct go mod tidy
 go build ./...
 ```
 
