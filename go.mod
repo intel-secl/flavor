@@ -6,3 +6,5 @@ require (
 	github.com/stretchr/testify v1.3.0
 	intel/isecl/lib/common/v4 v4.0.2
 )
+
+replace intel/isecl/lib/common/v4 => github.com/intel-secl/common/v4 v4.0.2
